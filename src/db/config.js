@@ -8,7 +8,7 @@ const conexionDB = async ()=>{
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
-        console.log("Contectado a la Base de Datos Dicta")
+        console.log("Contectado a la Base de Datos tesis")
     } catch (error) {
         console.log("El error es: " + error);
     }

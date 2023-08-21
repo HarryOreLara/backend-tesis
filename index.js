@@ -1,4 +1,5 @@
 //Importaciones de ejecucion
+//BaseDatos: DB_CONNECTION = mongodb+srv://harry:root@cluster0.aniauvv.mongodb.net/dicta?retryWrites=true&w=majority
 require("dotenv").config();
 //const { version } = require("./package.json")
 //Importaciones de express
