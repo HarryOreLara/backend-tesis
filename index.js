@@ -40,6 +40,6 @@ app.use("/medicines", medicineRouter);
 
 
 //SERVER
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log("Aplicacion corriendo en el puerto 3000");
 })
