@@ -9,7 +9,7 @@ const medicine = new Schema({
         trim:true
     },
     cantidadMedicamentos:{
-        type: Number,
+        type: String,
         required:true
     },
     horaInicio:{
