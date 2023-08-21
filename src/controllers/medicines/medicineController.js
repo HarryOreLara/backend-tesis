@@ -119,12 +119,13 @@ const updateMedicine =  async (req, res)=>{
 const deleteMedicine =  async (req, res)=>{
     const {id} = req.params;
     try {
+
         const medicine = await Medicine.findByIdAndRemove(id);
         
         return res.json({
             ok: true,
             msg:"Medicina eliminada",
-            rol
+            medicine
         });
     } catch (error) {
         return res.status(404).json({
