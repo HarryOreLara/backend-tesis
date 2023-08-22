@@ -17,6 +17,10 @@ conexionDB()
 //Importaciones de rutas
 const personaRouter = require("./src/routes/persona/persona.router");
 const medicineRouter = require("./src/routes/medicines/medicines.router");
+const jokeRouter = require("./src/routes/entertainment/joke.router");
+const minigamesRouter = require("./src/routes/entertainment/minigames.router");
+const musicRouter = require("./src/routes/entertainment/music.router");
+const videosRouter = require("./src/routes/entertainment/videos.router");
 
 
 
@@ -28,6 +32,11 @@ app.use("/", express.static(__dirname + "/src/public"));
 //RUTAS DINAMICAS
 app.use("/persona", personaRouter);
 app.use("/medicines", medicineRouter);
+app.use("/joke", jokeRouter);
+app.use("/minigame", minigamesRouter);
+app.use("/music", musicRouter);
+app.use("/video", videosRouter);
+
 
 
 
