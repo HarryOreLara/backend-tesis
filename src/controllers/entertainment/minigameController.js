@@ -1,5 +1,5 @@
 
-const Minigames = require("../../models/entertainment/Minigames.model");
+//const Minigames = require("../../models/entertainment/Minigames.model");
 
 
 const postMinigames = async (req, res)=>{
