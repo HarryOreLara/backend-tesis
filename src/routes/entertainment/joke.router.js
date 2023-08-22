@@ -5,7 +5,7 @@ const { postJoke,
     getLisAllJoke_byCreator,
     updateJoke,
     deleteJoke,
-    getAllJoke } = require("../../controllers/entertainment/jokeController");
+    getAllJoke,getOneJoke_ByNumeration } = require("../../controllers/entertainment/jokeController");
 const verifyToken = require("../../middlewares/verifyToken");
 
 const jokeRouter = Router();
@@ -22,6 +22,8 @@ jokeRouter.post("/post", [verifyToken], postJoke);
 jokeRouter.put("/update/:id", [], updateJoke);
 
 jokeRouter.delete("/delete/:id", [], deleteJoke);
+
+jokeRouter.get("/getOneNum/:id",[], getOneJoke_ByNumeration)
 
 
 

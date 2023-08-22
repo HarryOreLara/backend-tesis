@@ -135,7 +135,31 @@ const getAllJoke = async (req, res) => {
     }
 };
 
+const getOneJoke_ByNumeration = async (req, res)=>{
+    const {id} = req.params;
 
+    const joke = await Joke.find({numeroDocumento: id});
+
+    try {
+        if (!joke) {
+            return res.status(404).json({
+                ok: false,
+                msg: "Chiste no encontrado"
+              });
+        }
+    
+        return res.json({
+            joke
+        });
+    } catch (error) {
+        return res.status(404).json({
+            ok: false,
+            msg: 'Error en busqueda'
+        });
+    }
+
+
+}
 
 module.exports = {
 
@@ -144,6 +168,7 @@ module.exports = {
     getLisAllJoke_byCreator,
     updateJoke,
     deleteJoke,
-    getAllJoke
+    getAllJoke,
+    getOneJoke_ByNumeration
 
 }
