@@ -69,7 +69,11 @@ const postPersona = async (req, res) => {
         }
         
         const payload ={
-            id: newPersona.id
+            id: newPersona.id,
+            nombre: newPersona.nombre,
+            apellidos: newPersona.apellidos,
+            edad: newPersona.edad,
+            genero: newPersona.genero
         };
 
         //jwt.sign(payload, process.env.KEY_SECRET, {expiresIn:3000}, (error, token)=>{
