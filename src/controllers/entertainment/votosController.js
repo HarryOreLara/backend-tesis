@@ -1,72 +1,96 @@
 const Votos = require("../../models/entertainment/votos.model");
+const Joke = require("../../models/entertainment/joke.model");
 
 
 const postVoto = async (req,res)=>{
+    const {likes, dislikes} = req.body;
 
+    const newVoto = new Votos({likes, dislikes});
+    await newVoto.save();
+
+        res.status(200).json({
+            ok: true,
+            msg: "Collection voto creado correctamente",
+            newVoto 
+        });
 }
 
-
-const votoPositivo = async (req, res)=>{
+//64e6225f2f01ffac078b6fe2
+const votoPositivo = async (req, res) => {
+    const votoId = '64e6225f2f01ffac078b6fe2';
+    //const jokeId = '64e4f325fa5fdac29c95e09f';
     const {id} = req.params;
-    const votoId = 'iddelabase de datos';
-
-    const voto = await Votos.findByIdAndUpdate(votoId,
-    { $inc: { 'votos.dislikes': 1 } },
-    { new: true })
 
 
-    if (!joke) {
-        return res.status(404).json({ message: 'Chiste no encontrado' });
+    try {
+        // Buscar el documento por el ID
+        const busqueda = await Votos.findById(votoId);
+        const searchJoke = await Joke.findById(id);
+
+        if (!busqueda) {
+            return res.status(404).json({ ok: false, message: 'Voto no encontrado' });
+        }
+        if (!searchJoke) {
+            return res.status(404).json({ ok: false, message: 'Chiste no encontrado' });
+        }
+
+        // Actualizar el campo "likes" incrementando en 1
+        busqueda.likes += 1;
+        searchJoke.votos.likes +=1;
+
+        // Guardar la actualización
+        await busqueda.save();
+        await searchJoke.save();
+
+        //return res.json({ ok: true, votoActualizado: busqueda, chisteActualizado: searchJoke  });
+        return res.json({ ok: true });
+
+    } catch (error) {
+        return res.status(500).json({ ok: false, message: 'Error en el servidor' });
     }
-
-    return res.status(200).json({ message: 'Voto negativo registrado' });
-
-
-}
+};
 
 
-// // Ruta para actualizar votos positivos (likes)
-// router.post('/jokes/:jokeId/like', async (req, res) => {
-//     try {
-//       const jokeId = req.params.jokeId;
-//       const joke = await Joke.findByIdAndUpdate(
-//         jokeId,
-//         { $inc: { 'votos.likes': 1 } },
-//         { new: true }
-//       );
-  
-//       if (!joke) {
-//         return res.status(404).json({ message: 'Chiste no encontrado' });
-//       }
-  
-//       return res.status(200).json({ message: 'Voto positivo registrado' });
-//     } catch (error) {
-//       return res.status(500).json({ message: 'Error al actualizar los votos' });
-//     }
-//   });
-  
-//   // Ruta para actualizar votos negativos (dislikes)
-//   router.post('/jokes/:jokeId/dislike', async (req, res) => {
-//     try {
-//       const jokeId = req.params.jokeId;
-//       const joke = await Joke.findByIdAndUpdate(
-//         jokeId,
-//         { $inc: { 'votos.dislikes': 1 } },
-//         { new: true }
-//       );
-  
-//       if (!joke) {
-//         return res.status(404).json({ message: 'Chiste no encontrado' });
-//       }
-  
-//       return res.status(200).json({ message: 'Voto negativo registrado' });
-//     } catch (error) {
-//       return res.status(500).json({ message: 'Error al actualizar los votos' });
-//     }
-//   });
+const votoNegativo = async (req, res) => {
+    const votoId = '64e6225f2f01ffac078b6fe2';
+    //const jokeId = '64e4f325fa5fdac29c95e09f';
+    const {id} = req.params;
 
 
+
+    try {
+        // Buscar el documento por el ID
+        const busqueda = await Votos.findById(votoId);
+        const searchJoke = await Joke.findById(id);
+
+
+        if (!busqueda) {
+            return res.status(404).json({ ok: false, message: 'Voto no encontrado' });
+        }
+
+        if (!searchJoke) {
+            return res.status(404).json({ ok: false, message: 'Chiste no encontrado' });
+        }
+
+        // Actualizar el campo "likes" incrementando en 1
+        busqueda.dislikes += 1;
+        searchJoke.votos.dislikes +=1;
+
+        // Guardar la actualización
+        await busqueda.save();
+        await searchJoke.save();
+
+        //return res.json({ ok: true, votoActualizado: busqueda, chisteActualizado: searchJoke });
+        return res.json({ ok: true });
+
+    } catch (error) {
+        return res.status(500).json({ ok: false, message: 'Error en el servidor' });
+    }
+};
 
 module.exports = {
-    updateVoto
+    
+    postVoto,
+    votoPositivo,
+    votoNegativo
 }
