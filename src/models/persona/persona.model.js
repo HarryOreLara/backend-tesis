@@ -5,27 +5,27 @@ const persona = new Schema({
 
     nombre: {
         type: String,
-        require: true,
+        required: true,
         trim: true
     },
     apellidos: {
         type: String,
-        require: true,
+        required: true,
         trim: true
     },
     edad: {
         type: String,
-        require: true,
+        required: true,
         trim: true,
     },
     genero: {
         type: String,
-        require: true,
+        required: true,
         trim: true,
     },
     dni: {
         type: String,
-        require: true,
+        required: true,
         trim: true,
     },
     createdAt: {

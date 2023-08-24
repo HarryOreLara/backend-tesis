@@ -22,6 +22,7 @@ const minigamesRouter = require("./src/routes/entertainment/minigames.router");
 const musicRouter = require("./src/routes/entertainment/music.router");
 const videosRouter = require("./src/routes/entertainment/videos.router");
 const votoRouter = require("./src/routes/entertainment/voto.router");
+const assistentRouter = require("./src/routes/assistent/assistent.router");
 
 
 
@@ -38,7 +39,7 @@ app.use("/minigame", minigamesRouter);
 app.use("/music", musicRouter);
 app.use("/video", videosRouter);
 app.use("/voto", votoRouter);
-
+app.use("/assistent", assistentRouter);
 
 
 
