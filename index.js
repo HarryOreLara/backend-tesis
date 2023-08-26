@@ -15,6 +15,7 @@ conexionDB()
 
 
 //Importaciones de rutas
+const authRouter = require("./src/routes/auth/auth.router");
 const personaRouter = require("./src/routes/persona/persona.router");
 const medicineRouter = require("./src/routes/medicines/medicines.router");
 const jokeRouter = require("./src/routes/entertainment/joke.router");
@@ -32,6 +33,7 @@ app.use(express.json());
 
 app.use("/", express.static(__dirname + "/src/public"));
 //RUTAS DINAMICAS
+app.use("/auth/", authRouter);
 app.use("/persona", personaRouter);
 app.use("/medicines", medicineRouter);
 app.use("/joke", jokeRouter);
