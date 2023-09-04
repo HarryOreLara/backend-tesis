@@ -62,7 +62,7 @@ const postPersona = async (req, res) => {
             
         } catch (error) {
             res.json({
-                ok: true,
+                ok: false,
                 msg: "Contactese con el administrador",
                 error: error
             });
