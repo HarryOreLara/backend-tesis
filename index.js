@@ -8,6 +8,9 @@ const cors = require("cors");
 //CONFIGURACIONES de variables de entorno
 const conexionDB = require("./src/db/config");
 const app = express();
+
+
+
 conexionDB()
 
 
@@ -24,7 +27,7 @@ const musicRouter = require("./src/routes/entertainment/music.router");
 const videosRouter = require("./src/routes/entertainment/videos.router");
 const votoRouter = require("./src/routes/entertainment/voto.router");
 const assistentRouter = require("./src/routes/assistent/assistent.router");
-
+const messageRouter = require("./src/routes/message/message.router");
 
 
 app.use(cors());
@@ -42,6 +45,7 @@ app.use("/music", musicRouter);
 app.use("/video", videosRouter);
 app.use("/voto", votoRouter);
 app.use("/assistent", assistentRouter);
+app.use("/sendMessage", messageRouter);
 
 
 
