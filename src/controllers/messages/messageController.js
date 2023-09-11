@@ -28,13 +28,17 @@ io.on('connection', (socket) => {
   
 
 
-const sendMessage = async (req, res)=>{
+const sendMessage = async (req, res) => {
     const { message, room } = req.body;
-    io.to(room).emit('newMessage', message); // Enviar el mensaje a la sala especificada
-    res.status(200).json({ success: true });
-};
-
-
+  
+    if (!message || typeof message !== 'string' || !room || typeof room !== 'string') {
+      return res.status(400).json({ success: false, error: 'Datos de entrada no válidos' });
+    }
+  
+    io.to(room).emit('newMessage', message);
+    return res.status(200).json({ ok: true, message:message });
+  };
+  
 
 module.exports = {
     sendMessage
