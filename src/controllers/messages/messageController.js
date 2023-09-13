@@ -63,8 +63,27 @@ const mensaje = async (req, res)=>{
 }
 
 
+
+const getAllMensajeById = async (req, res)=>{
+  const {emisor, receptor} = req.body;
+  try {
+    const mensajeList = await Mensaje.find({emisor:emisor, receptor:receptor});
+    return res.json({
+      ok:true,
+      mensajeList
+    });
+  } catch (error) {
+    return res.status(500).json({
+      ok: false,
+      msg: "No existen mensajes, inicia un nuevo mensaje"
+    });
+  }
+}
+
+
 module.exports = {
   sendMessage,
-  mensaje
+  mensaje,
+  getAllMensajeById
 }
 

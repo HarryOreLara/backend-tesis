@@ -59,7 +59,6 @@ const getLisAllMedicine_byCreator =  async (req, res)=>{
             msg: "Error en el servidor al buscar la medicina por el creador"
           });
     }
-
 };
 
 
