@@ -1,5 +1,5 @@
 const Message = require("../../models/messages/message.model");
-
+const Mensaje = require("../../models/messages/mensaje.model");
 const express = require("express");
 const app = express();
 const http = require('http').Server(app);
@@ -49,7 +49,22 @@ const sendMessage = async (req, res) => {
 };
 
 
+
+const mensaje = async (req, res)=>{
+
+  const {mensaje, emisor, receptor, leido} = req.body;
+
+  const nuevoMensaje = new Mensaje({mensaje, emisor, receptor, leido});
+  await nuevoMensaje.save();
+
+  return res.status(200).json({ ok: true, message: "Mensaje enviado" });
+
+
+}
+
+
 module.exports = {
-  sendMessage
+  sendMessage,
+  mensaje
 }
 
