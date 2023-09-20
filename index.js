@@ -28,6 +28,7 @@ const videosRouter = require("./src/routes/entertainment/videos.router");
 const votoRouter = require("./src/routes/entertainment/voto.router");
 const assistentRouter = require("./src/routes/assistent/assistent.router");
 const messageRouter = require("./src/routes/message/message.router");
+const chatRouter = require("./src/routes/message/chat.router");
 
 
 app.use(cors());
@@ -46,6 +47,7 @@ app.use("/video", videosRouter);
 app.use("/voto", votoRouter);
 app.use("/assistent", assistentRouter);
 app.use("/sendMessage", messageRouter);
+app.use("/chat", chatRouter);
 
 
 
