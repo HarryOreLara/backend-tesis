@@ -87,11 +87,11 @@ const searchPerson = async (req, res) => {
 
   try {
 
-    const profile = await Persona.find({ nombre: id });
+    const persona = await Persona.find({ nombre: id });
 
     return res.json({
       ok: true,
-      profile
+      persona
     });
   } catch (error) {
     return res.status(500).json({
