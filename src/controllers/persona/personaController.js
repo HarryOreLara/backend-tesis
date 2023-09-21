@@ -19,6 +19,9 @@ const getAllPersona = async (req, res) => {
 };
 
 
+
+
+
 const getOnePersona_byId = async (req, res) => {
     const { id } = req.params;
     const persona = await Persona.findById(id);
@@ -40,10 +43,36 @@ const getOnePersona_byId = async (req, res) => {
 
 // };
 
+const getPersona_by_idUsuario = async (req, res)=> {
+    const {id} = req.params;
+    const persona = await Persona.find({idUsuario:id});
+
+
+    try {
+        if (!persona) {
+            return res.json({
+                ok:false,
+                msg:"Persona no encontrada"
+            })
+        }
+    
+        return res.json({
+            ok: true,
+            persona
+        });
+    } catch (error) {
+        res.json({
+            ok: false,
+            msg: "Error en el servidor"
+        });
+    }
+
+
+};
 
 const postPersona = async (req, res) => {
 
-    const { nombre, apellidos, edad, genero, dni} = req.body;
+    const { nombre, apellidos, edad, genero, dni, idUsuario} = req.body;
 
     try {
         let persona = await Persona.findOne({ dni });
@@ -55,7 +84,7 @@ const postPersona = async (req, res) => {
             });
         }
 
-        const newPersona = new Persona({ nombre, apellidos, edad, genero, dni});
+        const newPersona = new Persona({ nombre, apellidos, edad, genero, dni, idUsuario});
 
         try {
             await newPersona.save();
@@ -73,7 +102,8 @@ const postPersona = async (req, res) => {
             nombre: newPersona.nombre,
             apellidos: newPersona.apellidos,
             edad: newPersona.edad,
-            genero: newPersona.genero
+            genero: newPersona.genero,
+            idUsuario: newPersona.idUsuario
         };
 
         //jwt.sign(payload, process.env.KEY_SECRET, {expiresIn:3000}, (error, token)=>{
@@ -118,6 +148,7 @@ const updatePersona = async (req, res) => {
 };
 
 
+
 // const deletePersona = async (req, res) => {
 
 // };
@@ -127,5 +158,6 @@ module.exports = {
     postPersona,
     updatePersona,
     getAllPersona
-    ,getOnePersona_byId
+    ,getOnePersona_byId,
+    getPersona_by_idUsuario
 }

@@ -28,6 +28,12 @@ const persona = new Schema({
         required: true,
         trim: true,
     },
+    idUsuario: {
+        type: String,
+        unique: true,
+        required: true,
+        trim: true,
+    },
     createdAt: {
         type: Date,
         default: Date.now(),
