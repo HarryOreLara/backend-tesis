@@ -53,7 +53,7 @@ const getAll = async (req, res)=>{
     try {
         return res.json({
             ok: true,
-            chat,
+            listChats:chat
           });
     } catch (error) {
         return res.status(404).json({
@@ -72,7 +72,7 @@ const getOne = async (req, res)=>{
 
         res.status(200).json({
             ok:true,
-            chat
+            listChats:chat
         });
     } catch (error) {
         return res.status(404).json({
