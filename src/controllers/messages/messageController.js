@@ -68,7 +68,16 @@ const mensaje = async (req, res) => {
 const getAllMensajeById = async (req, res) => {
   const { emisor, receptor } = req.body;
   try {
-    const mensajeList = await Mensaje.find({ emisor: emisor, receptor: receptor });
+    let mensajeList = await Mensaje.find({ emisor: emisor, receptor: receptor });
+
+    if(mensajeList.length === 0){
+      mensajeList =  await Mensaje.find({emisor: receptor, receptor:emisor});
+      return res.json({
+        ok: true,
+        mensajeList
+      });
+    }
+
     return res.json({
       ok: true,
       mensajeList
