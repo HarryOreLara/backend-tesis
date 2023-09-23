@@ -8,7 +8,6 @@ messageRouter.post('/sendMessage/:id',[], sendMessage)
 
 messageRouter.post('/mensaje', [], mensaje);
 
-
 messageRouter.get('/msgList', [], getAllMensajeById);
 
 messageRouter.get('/search/:id', [], searchPerson);

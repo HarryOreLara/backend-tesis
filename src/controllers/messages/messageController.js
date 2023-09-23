@@ -68,20 +68,17 @@ const mensaje = async (req, res) => {
 const getAllMensajeById = async (req, res) => {
   const { emisor, receptor } = req.body;
   try {
-    let mensajeList = await Mensaje.find({ emisor: emisor, receptor: receptor });
-
-    if(mensajeList.length === 0){
-      mensajeList =  await Mensaje.find({emisor: receptor, receptor:emisor});
-      return res.json({
-        ok: true,
-        mensajeList
-      });
-    }
+    let mensajeList = await Mensaje.find({ $or:[
+      {emisor: emisor, receptor: receptor},
+      {emisor: receptor, receptor: emisor}
+    ]}).sort({createdAt: -1});
 
     return res.json({
       ok: true,
       mensajeList
     });
+
+    
   } catch (error) {
     return res.status(500).json({
       ok: false,
