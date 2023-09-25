@@ -29,6 +29,8 @@ const votoRouter = require("./src/routes/entertainment/voto.router");
 const assistentRouter = require("./src/routes/assistent/assistent.router");
 const messageRouter = require("./src/routes/message/message.router");
 const chatRouter = require("./src/routes/message/chat.router");
+const forumRouter = require("./src/routes/forum/forum.router");
+const responseForumRouter = require("./src/routes/forum/response.forum.router");
 
 
 app.use(cors());
@@ -48,6 +50,8 @@ app.use("/voto", votoRouter);
 app.use("/assistent", assistentRouter);
 app.use("/sendMessage", messageRouter);
 app.use("/chat", chatRouter);
+app.use("/forum", forumRouter);
+app.use("/responseForum", responseForumRouter);
 
 
 
