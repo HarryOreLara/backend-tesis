@@ -1,7 +1,7 @@
 const { Router } = require("express");
 
 const {    getLisAllMedicine_byCreator, getOneMedicine_ById, getLisAllMedicine_byId, 
-    postMedicine, updateMedicine, deleteMedicine,getAllMedicine} = require("../../controllers/medicines/medicineController");
+    postMedicine, updateMedicine, deleteMedicine,getAllMedicine,marcacionMedicine} = require("../../controllers/medicines/medicineController");
 const verifyToken = require("../../middlewares/verifyToken");
 
 
@@ -19,5 +19,11 @@ medicineRouter.put("/update/:id",[], updateMedicine);
 
 medicineRouter.delete("/delete/:id",[], deleteMedicine);
 
-//proando
+medicineRouter.post("/marcacion",[], marcacionMedicine);
+
+
+
+
+
+
 module.exports = medicineRouter;

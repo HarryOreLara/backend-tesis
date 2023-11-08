@@ -1,5 +1,5 @@
 const Medicine = require("../../models/medicines/medicine.model");
-
+const MedicineMarcacion = require("../../models/medicines/medicine.marcacion.model");
 
 const getAllMedicine =  async (req, res)=>{
     try{
@@ -136,6 +136,30 @@ const deleteMedicine =  async (req, res)=>{
 };
 
 
+const marcacionMedicine = async (req, res)=>{
+    const {nombre, idMedicine, creator, createdAt} = req.body;
+
+
+    try {
+    
+        const marcacion = new MedicineMarcacion({nombre, idMedicine, creator, createdAt});
+        await marcacion.save();
+        
+        res.status(200).json({
+            ok: true,
+            marcacion
+        });
+
+    } catch (error) {
+        return res.status(404).json({
+            ok: false,
+            msg: 'Comuniquese con el administrador'
+        });
+    }
+
+};
+
+
 module.exports = {
 
     postMedicine,
@@ -143,6 +167,7 @@ module.exports = {
     getLisAllMedicine_byCreator,
     updateMedicine,
     deleteMedicine,
-    getAllMedicine
+    getAllMedicine,
+    marcacionMedicine
 
 }
