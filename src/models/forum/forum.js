@@ -21,11 +21,9 @@ const forum = new Schema({
     creator: {
         type: String,
         require: true,
-        require: true,
     },
     createdAt: {
         type: Date,
-        default: Date.now(),
     },
 
 
