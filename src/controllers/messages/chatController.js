@@ -2,7 +2,7 @@ const Chat = require("../../models/messages/chat.model");
 
 
 const postChat = async (req, res) => {
-    const { idEmisor, idReceptor, nombreReceptor, nombreEmisor } = req.body;
+    const { idEmisor, idReceptor, nombreReceptor, nombreEmisor, createdAt } = req.body;
 
     try {
         const chat1 = await Chat.findOne({ idEmisor, idReceptor });
@@ -17,8 +17,8 @@ const postChat = async (req, res) => {
             });
         }
 
-        const newChat1 = new Chat({ idEmisor: idEmisor, idReceptor: idReceptor, nombreReceptor: nombreReceptor, nombreEmisor: nombreEmisor });
-        const newChat2 = new Chat({ idEmisor: idReceptor, idReceptor: idEmisor, nombreReceptor: nombreEmisor, nombreEmisor: nombreReceptor });
+        const newChat1 = new Chat({ idEmisor: idEmisor, idReceptor: idReceptor, nombreReceptor: nombreReceptor, nombreEmisor: nombreEmisor, createdAt });
+        const newChat2 = new Chat({ idEmisor: idReceptor, idReceptor: idEmisor, nombreReceptor: nombreEmisor, nombreEmisor: nombreReceptor, createdAt });
 
 
         try {

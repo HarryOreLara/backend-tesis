@@ -1,12 +1,12 @@
 const ResponseForum = require("../../models/forum/responseForum");
 
 const createResponse = async (req, res) => {
-    const { contenido } = req.body;
+    const { contenido, createdAt } = req.body;
     const {idf} = req.params;
     const id = req.uid;
 
 
-    const mensaje = new ResponseForum({ contenido, idForo:idf, creador:id });
+    const mensaje = new ResponseForum({ contenido, idForo:idf, creador:id, createdAt});
     await mensaje.save();
 
     return res.status(200).json({ ok: true, message: "Mensaje enviado" });

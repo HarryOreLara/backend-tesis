@@ -72,7 +72,7 @@ const getPersona_by_idUsuario = async (req, res)=> {
 
 const postPersona = async (req, res) => {
 
-    const { nombre, apellidos, edad, genero, dni, idUsuario} = req.body;
+    const { nombre, apellidos, edad, genero, dni, idUsuario, createdAt} = req.body;
 
     try {
         let persona = await Persona.findOne({ dni });
@@ -84,7 +84,7 @@ const postPersona = async (req, res) => {
             });
         }
 
-        const newPersona = new Persona({ nombre, apellidos, edad, genero, dni, idUsuario});
+        const newPersona = new Persona({ nombre, apellidos, edad, genero, dni, idUsuario, createdAt});
 
         try {
             await newPersona.save();

@@ -53,9 +53,9 @@ const sendMessage = async (req, res) => {
 
 const mensaje = async (req, res) => {
 
-  const { mensaje, emisor, receptor, leido } = req.body;
+  const { mensaje, emisor, receptor, leido, createdAt } = req.body;
 
-  const nuevoMensaje = new Mensaje({ mensaje, emisor, receptor, leido });
+  const nuevoMensaje = new Mensaje({ mensaje, emisor, receptor, leido, createdAt });
   await nuevoMensaje.save();
 
   return res.status(200).json({ ok: true, message: "Mensaje enviado" });

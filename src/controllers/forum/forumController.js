@@ -1,7 +1,7 @@
 const Forum = require("../../models/forum/forum");
 
 const createForo = async (req, res) => {
-    const { titulo, descripcion } = req.body;
+    const { titulo, descripcion, createdAt } = req.body;
     const id = req.uid;
 
     try {
@@ -14,7 +14,7 @@ const createForo = async (req, res) => {
             });
         }
 
-        const foro = new Forum({ titulo, descripcion, creator: id });
+        const foro = new Forum({ titulo, descripcion, creator: id , createdAt});
         await foro.save();
 
         res.status(200).json({
