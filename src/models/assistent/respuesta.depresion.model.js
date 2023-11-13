@@ -26,7 +26,6 @@ const respuestas_depresion = new Schema({
     ],
     createdAt:{
         type: Date,
-        default: Date.now()
     }
 
 });

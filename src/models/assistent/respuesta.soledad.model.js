@@ -27,7 +27,6 @@ const respuestas_soledad = new Schema({
     ],
     createdAt:{
         type: Date,
-        default: Date.now()
     }
 
 });
