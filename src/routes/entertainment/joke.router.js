@@ -8,6 +8,10 @@ const { postJoke,
     getAllJoke,getOneJoke_ByNumeration } = require("../../controllers/entertainment/jokeController");
 const verifyToken = require("../../middlewares/verifyToken");
 
+const {createRespuestaJoke} = require("../../controllers/entertainment/respuestasJokeController");
+
+
+
 const jokeRouter = Router();
 
 
@@ -26,6 +30,10 @@ jokeRouter.delete("/delete/:id", [], deleteJoke);
 jokeRouter.get("/getOneNum/:id",[], getOneJoke_ByNumeration)
 
 
+
+
+///Respuestas
+jokeRouter.post("/resJoke/:id", [], createRespuestaJoke)
 
 
 module.exports = jokeRouter;
