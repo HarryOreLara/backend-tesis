@@ -18,7 +18,30 @@ const createRespuestaDepre = async (req, res) => {
 };
 
 
+const respuestaByPersonaDepresion = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const respuestaPersonaDepresion = await RespuestaDepresion.find({ idPersona: id });
+
+        if (!respuestaPersonaDepresion) {
+            return res.status(404).json({
+                msg: "No hay respuestas"
+            });
+        }
+
+        return res.json({
+            respuestaPersonaDepresion
+        });
+    } catch (error) {
+
+    }
+}
+
+
+
+
 
 module.exports = {
-    createRespuestaDepre
+    createRespuestaDepre,
+    respuestaByPersonaDepresion
 }

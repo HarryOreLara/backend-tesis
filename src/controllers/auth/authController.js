@@ -95,7 +95,23 @@ const loginUser = async (req, res)=>{//aprobado
 }
 
 
+const getAll = async (req, res)=>{
+    try {
+        const usuario = await Usuario.find().sort({createdAt: -1});
+        return res.json({
+            usuario
+        });
+    } catch (error) {
+        return res.status(404).json({
+            ok: false,
+            msg: "No hay foros"
+        });
+    }
+}
+
+
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    getAll
 }
